@@ -1,0 +1,52 @@
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.wheel {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: #f0f0f0;
+  transform-origin: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.game-logo {
+  position: absolute;
+  top: 20px; /* Adjust based on where you want the logo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18%; /* Adjust to set the logo's size */
+  z-index: 1; /* Ensure the logo stays on top of the canvas */
+}
+.home-logo {
+  position: absolute;
+  top: 20px; /* Adjust based on where you want the logo */
+  left: 90%;
+  transform: translateX(-50%);
+  width: 4%; /* Adjust to set the logo's size */
+  z-index: 1; /* Ensure the logo stays on top of the canvas */
+}
