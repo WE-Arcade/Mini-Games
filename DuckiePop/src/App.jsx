@@ -6,11 +6,13 @@ import Home from "./Home";
 import Categories from "./Categories";
 import TwoPlayer from "./TwoPlayer";
 import DailyWord from "./DailyWord";
+import { MusicProvider } from "./MusicContext";
 import "./App.css"; 
 
 
 function App() {
   return (
+    <MusicProvider>
     <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -21,6 +23,7 @@ function App() {
           <Route path="/DailyWord" element={<DailyWord />} />
         </Routes>
     </Router>
+    </MusicProvider>
   );
 }
 

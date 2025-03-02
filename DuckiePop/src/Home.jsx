@@ -1,16 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from 'react';
-const Home = () => {
-  useEffect(() => {
-    const audio = new Audio('/music/home.mpeg'); // Path to the home page music
-    audio.loop = true; // Loop the music if desired
-    audio.play();
+import MusicButton from "./MusicButton";
 
-    return () => {
-      audio.pause(); // Stop music when leaving the page
-    };
-  }, []);
+const Home = () => {
   return (
     <div className="home-container p-8 h-screen bg-[#FBE6C2]">
       <div className="relative wall border-8 border-[#A67C52] h-full">
@@ -29,7 +21,7 @@ const Home = () => {
             alt="Game Title"
             className="w-1/2 mb-6"
           />
-
+          
           {/* Play Button */}
           <div className="play-btn">
             <Link to="/categories">
@@ -46,23 +38,23 @@ const Home = () => {
 
           {/* Other Options */}
           <div className="other-options flex space-x-6">
-          <Link to="/DailyWord" >
-            {/* Daily Word Button */}
-            <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out">
-              Daily Word
-            </button>
+            <Link to="/DailyWord">
+              {/* Daily Word Button */}
+              <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out">
+                Daily Word
+              </button>
             </Link>
 
             {/* 2 Player Button */}
-            <Link to="/TwoPlayer" >
-            <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out flex items-center">
-              <img
-                src="public/icons/2.ico"
-                alt="2's image"
-                className="w-8 mr-2"
-              />
-              Player
-            </button>
+            <Link to="/TwoPlayer">
+              <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out flex items-center">
+                <img
+                  src="public/icons/2.ico"
+                  alt="2's image"
+                  className="w-8 mr-2"
+                />
+                Player
+              </button>
             </Link>
           </div>
         </div>
@@ -83,6 +75,9 @@ const Home = () => {
             </p>
           </Link>
         </div>
+
+        {/* Music Toggle Button - Now using the reusable component */}
+        <MusicButton className="fixed bottom-6 left-6" />
       </div>
     </div>
   );

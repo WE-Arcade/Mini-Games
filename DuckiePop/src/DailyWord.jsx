@@ -310,6 +310,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DailyWord.css'; // Import your CSS file
 import { Link } from 'react-router-dom';
+import MusicButton from './MusicButton';
 
 const categories = [
   {
@@ -529,6 +530,7 @@ const DailyWord = () => {
           ) : (
             <p>Loading...</p>
           )}
+          <MusicButton></MusicButton>
         </div>
       )}
     </div>

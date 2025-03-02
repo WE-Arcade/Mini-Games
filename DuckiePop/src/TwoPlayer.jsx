@@ -298,6 +298,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DuckieGame.css'; // Import your CSS file
 import { Link } from "react-router-dom";
+import MusicButton from './MusicButton';
 
 const TwoPlayer = () => {
   const [targetWord, setTargetWord] = useState('');
@@ -448,8 +449,9 @@ const TwoPlayer = () => {
               <div className="keyboard">{renderKeyboard()}</div>
             </div>
           </div>
-        </div>
-      ) : (
+          <MusicButton></MusicButton>
+          </div>
+        ) : (
         <div className="game-message">
           {gameState === 'won' ? '🎉 You Won! 🎉' : '😢 You Lost! Try Again!'}
           <div className="correct-word">

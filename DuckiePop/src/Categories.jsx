@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './Categories.css';
 import { Link } from 'react-router-dom';
+import MusicButton from './MusicButton';
 
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -27,9 +28,9 @@ const Categories = () => {
     },
     {
       id: 4,
-      name: 'Mathematics',
+      name: 'Large System Design',
       imgSrc: '/icons/duck_math.png',
-      words: ['calculus', 'algebra', 'matrix', 'vector', 'gradient']
+      words: ['scalability', 'loadbalancer', 'microservices', 'sharding', 'replication', 'caching', 'consistency', 'latency', 'throughput', 'partitioning', 'availability', 'failover', 'contentdelivery', 'eventdriven', 'stateless', 'horizontalscaling', 'verticalscaling', 'ratelimiting', 'distributedqueue', 'dataconsistency']
     }
   ];
   
@@ -88,6 +89,10 @@ const Categories = () => {
         >
           Play Game
         </button>
+
+        {/* Music Toggle Button - Now using the reusable component */}
+        <MusicButton className="fixed bottom-6 left-6" />
+
       </section>
     </div>
   );

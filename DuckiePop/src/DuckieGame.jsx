@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import './DuckieGame.css'; 
 import { Link } from "react-router-dom";
+import MusicButton from './MusicButton'; // Import the MusicButton component
 
 const DuckieGame = () => {
   const words = JSON.parse(localStorage.getItem('gameWords')) || ['javascript', 'react', 'hangman', 'duck', 'coding'];
@@ -139,6 +139,9 @@ const DuckieGame = () => {
         
 return (
   <div className="desktop-1">
+    {/* Music Button - added at a fixed position for both game states */}
+    <MusicButton className="fixed bottom-6 left-6" />
+    
     {gameState === "won" || gameState === "lost" ? (
       <div>
         <Link to="/">
@@ -198,7 +201,7 @@ return (
             Your browser does not support the video tag.
           </video>
         </div>
-        <img className="coinsimg" src="/icons/coins.ico" alt="Coins Icon" />
+        <img className="coinsimg" src="/icons/coins.svg" alt="Coins Icon" />
         <div className="coins">420</div>
         <div className="game-container">
           <div className="header">
@@ -240,6 +243,5 @@ return (
 );
 
 }
-
 
 export default DuckieGame;

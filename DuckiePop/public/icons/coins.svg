@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Gold Coin 1 (back) -->
+  <circle cx="150" cy="150" r="70" fill="#FFD700" stroke="#E6B800" stroke-width="4" />
+  <circle cx="150" cy="150" r="60" fill="#FFDF33" stroke="#E6B800" stroke-width="2" />
+  <text x="150" y="155" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#B8860B">$</text>
+  <circle cx="150" cy="150" r="40" fill="none" stroke="#E6B800" stroke-width="2" />
+  
+  <!-- Silver Coin (middle) -->
+  <circle cx="200" cy="120" r="70" fill="#C0C0C0" stroke="#A8A8A8" stroke-width="4" />
+  <circle cx="200" cy="120" r="60" fill="#D3D3D3" stroke="#A8A8A8" stroke-width="2" />
+  <text x="200" cy="125" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#696969">¢</text>
+  <circle cx="200" cy="120" r="40" fill="none" stroke="#A8A8A8" stroke-width="2" />
+  
+  <!-- Bronze Coin (front) -->
+  <circle cx="250" cy="150" r="70" fill="#CD7F32" stroke="#B35A1F" stroke-width="4" />
+  <circle cx="250" cy="150" r="60" fill="#D2691E" stroke="#B35A1F" stroke-width="2" />
+  <text x="250" y="155" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#8B4513">♦</text>
+  <circle cx="250" cy="150" r="40" fill="none" stroke="#B35A1F" stroke-width="2" />
+  
+  <!-- Shine effects -->
+  <ellipse cx="130" cy="130" rx="15" ry="10" fill="white" opacity="0.3" />
+  <ellipse cx="180" cy="100" rx="15" ry="10" fill="white" opacity="0.3" />
+  <ellipse cx="230" cy="130" rx="15" ry="10" fill="white" opacity="0.3" />
+</svg>

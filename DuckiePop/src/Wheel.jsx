@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Phaser from "phaser";
 import './Wheel.css';
 import { Link } from "react-router-dom";
+import MusicButton from "./MusicButton";
 
 const Wheel = () => {
   useEffect(() => {
@@ -163,6 +164,7 @@ const Wheel = () => {
         className="game-logo"
       />
       <div id="game-container"></div>
+      <MusicButton></MusicButton>
     </div>
   );
 };
