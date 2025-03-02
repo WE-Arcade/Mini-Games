@@ -61,15 +61,18 @@ const Categories = () => {
         <img src="/icons/duckie_logo.png" alt="Don't Pop The Duckie Logo" className="logo" />
       </header>
       <div className="video-section">
-        <video 
-          width="300" 
-          autoPlay 
-          onEnded={() => console.log('Video finished playing')} // Callback when video ends
-        >
-          <source src="/videos/start.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+  <div className="video-wrapper">
+    <video 
+      className="centered-video" 
+      autoPlay 
+      onEnded={() => console.log('Video finished playing')}
+    >
+      <source src="/videos/start.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
 
       {/* Categories Section */}
       <section className="categories-section">

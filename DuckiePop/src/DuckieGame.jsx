@@ -115,9 +115,9 @@ const DuckieGame = () => {
   };
   const getDuckieVideo = () => {
     if (gameState === "won") {
-      return '/videos/won.mp4';
+      return '/videos/win.mp4';
     } else if (gameState === "lost") {
-      return '/videos/cry.mp4'; 
+      return '/videos/lost.mp4'; 
     } else if (wrongGuesses === 0) {
       return '/videos/video_0.mp4';
     } else if (wrongGuesses === 1) {
@@ -153,9 +153,8 @@ return (
         <video 
           className="duckie-video" 
           autoPlay 
-          muted 
           playsInline 
-          style={{ width: "400px", height: "400px" }}
+          style={{ width: "400px", height: "300px" }}
         >
           <source src={getDuckieVideo()} type="video/mp4" />
           Your browser does not support the video tag.
@@ -192,10 +191,9 @@ return (
             className="duckie-video" 
             key={wrongGuesses} 
             autoPlay 
-            muted 
-            playsInline
             ref={videoRef} 
             onEnded={handleVideoEnd}
+            
           >
             <source src={getDuckieVideo()} type="video/mp4" />
             Your browser does not support the video tag.

@@ -867,6 +867,7 @@
 
 /* Left Side for Duckie Image */
 .duckie-pool {
+  border-radius:50%;
   position: relative;
   left: 5vw;
   top: 12vh;

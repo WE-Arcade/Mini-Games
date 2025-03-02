@@ -18,7 +18,7 @@ export const useMusic = () => {
 // Create a provider component
 export const MusicProvider = ({ children }) => {
   // Set initial state to true for isPlaying
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [audio] = useState(new Audio('/music/home.mpeg'));
 
   useEffect(() => {
