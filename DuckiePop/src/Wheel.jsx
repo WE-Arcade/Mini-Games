@@ -60,14 +60,14 @@ const Wheel = () => {
       }
       create() {
         const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
+        const centerY = window.innerHeight / 2-100;
         this.wheel = this.add.sprite(centerX, centerY+50, "wheel");
         this.wheel.setScale(0.8);
         this.pin = this.add.sprite(centerX, centerY+50, "pin");
         this.pin.setScale(1); 
         this.prizeText = this.add.text(
           centerX,
-          window.innerHeight - 35,
+          centerY+330,
           "SPIN TO WIN",
           {
             font: "bold 32px Rajdhani",
@@ -164,7 +164,10 @@ const Wheel = () => {
         className="game-logo"
       />
       <div id="game-container"></div>
-      <MusicButton></MusicButton>
+      {/* <MusicButton></MusicButton> */}
+      <MusicButton className="music-button" />
+
+
     </div>
   );
 };

@@ -37,7 +37,7 @@
 .game-logo {
   position: absolute;
   top: 20px; /* Adjust based on where you want the logo */
-  left: 50%;
+  right: 70%;
   transform: translateX(-50%);
   width: 18%; /* Adjust to set the logo's size */
   z-index: 1; /* Ensure the logo stays on top of the canvas */
@@ -49,4 +49,10 @@
   transform: translateX(-50%);
   width: 4%; /* Adjust to set the logo's size */
   z-index: 1; /* Ensure the logo stays on top of the canvas */
+}
+.music-button {
+  position: fixed;    /* Fix the button at a specific position */
+  bottom: 20px;       /* Adjust the distance from the bottom of the screen */
+  left: 20px;         /* Adjust the distance from the left of the screen */
+  z-index: 1000;      /* Make sure it stays above other elements */
 }
