@@ -1,4 +1,3 @@
-// 
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -19,8 +18,15 @@ const Home = () => {
       const timeRemaining = 24 * 60 * 60 * 1000 - (now - lastVisitTime); // 24 hours - time passed
 
       if (timeRemaining > 0) {
+        // Update time left every second
         const timer = setInterval(() => {
-          setTimeLeft(timeRemaining);
+          const newTimeLeft = timeRemaining - (new Date() - lastVisitTime);
+          if (newTimeLeft <= 0) {
+            clearInterval(timer);  // Stop the interval when time is up
+            setTimeLeft(0);  // Set timeLeft to 0 when time's up
+          } else {
+            setTimeLeft(newTimeLeft);
+          }
         }, 1000);
 
         // Cleanup interval when the component is unmounted
@@ -105,12 +111,7 @@ const Home = () => {
             {/* 2 Player Button */}
             <Link to="/TwoPlayer">
               <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out flex items-center">
-                <img
-                  src="public/icons/2.ico"
-                  alt="2's image"
-                  className="w-8 mr-2"
-                />
-                Player
+                DuckieDuel
               </button>
             </Link>
           </div>
@@ -133,7 +134,7 @@ const Home = () => {
           </Link>
         </div>
 
-        {/* Music Toggle Button - Now using the reusable component */}
+        {/* Music Toggle Button */}
         <MusicButton className="fixed bottom-6 left-6" />
       </div>
     </div>

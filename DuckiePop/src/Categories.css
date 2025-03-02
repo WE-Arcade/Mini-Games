@@ -114,7 +114,7 @@
 /* Apply rounded corners and any other desired styles */
 .centered-video {
   border-radius: 20px;  /* Adjust the value for more or less roundness */
-  width: 200px;         /* Adjust width as per your design */
-  height: 200px;        /* Keep width and height equal for a circular video */
+  width:0px;         /* Adjust width as per your design */
+  height: 0px;        /* Keep width and height equal for a circular video */
   object-fit: cover;    /* Ensures the video fits well inside the container */
 }
