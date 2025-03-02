@@ -122,9 +122,9 @@ const DailyWord = () => {
 
   const getDuckieVideo = () => {
     if (gameState === 'won') {
-      return '/videos/won.mp4';
+      return '/videos/win.mp4';
     } else if (gameState === 'lost') {
-      return '/videos/cry.mp4';
+      return '/videos/lost.mp4';
     } else if (wrongGuesses === 0) {
       return '/videos/video_0.mp4';
     } else if (wrongGuesses === 1) {
@@ -147,6 +147,9 @@ const DailyWord = () => {
 
   return (
     <div className="desktop-1">
+      <div className="title">
+            <img className="titleimg" src="/icons/logo.png" alt="title" />
+          </div>
       {gameState === "won" || gameState === "lost" ? (
         <div>
           <Link to="/">
@@ -176,11 +179,6 @@ const DailyWord = () => {
             {gameState === 'won' ? 'You Win!' : 'You Lose!'}
             <br />
             The word was: <strong>{targetWord}</strong>
-          </div>
-          <div className="restart-container">
-            <button className="restart-button" onClick={startNewGame}>
-              Restart Game
-            </button>
           </div>
         </div>
       ) : (

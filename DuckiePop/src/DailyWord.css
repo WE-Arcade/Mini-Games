@@ -1,138 +1,65 @@
-
-body{
-    background-color: #ffe4b5
+body {
+  background-color: #ffe4b5;
 }
-/*
-.dailyword-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-  }
-  */
-  .home-icon {
-    width: 3vw;
-    height: auto;
-    position: absolute;
-    left: 2vw;
-    top: 4vh;
-    overflow: visible;
-  }
-  .dailyword-title {
-    padding-top:40px;
-    font-size: 2rem;
-    color: #333; 
-  }/*
-  
-  .category-display {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #555; 
-  }
-  
-  .game-content {
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start;
-    gap:200px;
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-  }
-  
-  .duckie-pool {
-    flex: 0 0 auto; 
-  }
-  
-  .duckie-image {
-    width: 300px; 
-    height: auto;
-  }
-  
-  .keyboard {
-    padding-top:80px;
-    height : 100px;
-    flex: 1; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .keyboard-key {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fffe71;
-    transition: background-color 0.3s ease;
-  }
-  
-  .keyboard-key:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
-  .keyboard-key:hover:not(:disabled) {
-    background-color: #fffe71
-  }
-  
-  .word-display {
-    padding-top:100px;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    letter-spacing: 10px;
-    color: #333;
-  }
-  
-  .word-display .letter {
-    color: #000; 
-  }
-  
-  .game-message {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 20px;
-    color: #d9534f;
-  } */
 
-  /* DailyWord.css */
+.home-icon {
+  width: 3vw;
+  height: auto;
+  position: fixed; /* Fixes the position relative to the viewport */
+  top: 4vh; /* Adjust top positioning */
+  right: 2vw; /* Align it to the right of the viewport */
+  overflow: visible;
+}
+
+
+/* Daily Word Container */
 .dailyword-container {
   text-align: center;
-  padding: 0px;
+  padding: 20px; /* Added padding for better spacing */
 }
 
+/* Title */
+.dailyword-title {
+  font-size: 2rem;
+  color: #333;
+  margin-top: 150px; /* Added margin for spacing */
+  padding-top: 10px;
+}
+
+/* Category Display */
 .category-display {
   font-size: 1.5rem;
   margin-bottom: 20px;
+  color: #555;
 }
 
+/* Content Wrapper for video and keyboard */
 .content-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 20px; /* Space between video and keyboard */
-  /* margin-top: 10px; */
+  margin-top: 30px; /* Added margin to separate content from category */
 }
 
+/* Duckie Video */
 .duckie-video {
-  width: 500px; /* Adjust as needed */
+  width: 500px;
   height: auto;
   border-radius: 10px;
 }
 
+/* Keyboard Section */
 .keyboard {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding-top:100px;
+  padding-top: 100px;
   justify-content: center;
-  max-width: 500px; /* Adjust as needed */
+  max-width: 500px;
 }
 
+/* Individual Keyboard Keys */
 .keyboard-key {
   padding: 10px;
   font-size: 1rem;
@@ -140,24 +67,31 @@ body{
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
 }
 
+/* Disabled Keyboard Key */
 .keyboard-key:disabled {
   background-color: #ddd;
   cursor: not-allowed;
 }
 
+/* Word Display */
 .word-display {
   font-size: 2rem;
   margin: 20px 0;
   letter-spacing: 10px;
+  color: #333;
 }
 
+/* Game Message */
 .game-message {
   font-size: 1.5rem;
   margin-top: 20px;
+  color: #d9534f;
 }
 
+/* Reset Button */
 .reset-button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -167,8 +101,35 @@ body{
   color: white;
   border: none;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
+/* Hover Effect for Reset Button */
 .reset-button:hover {
   background-color: #45a049;
+}
+
+/* Adding responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column; /* Stack video and keyboard vertically on smaller screens */
+    gap: 15px;
+  }
+
+  .duckie-video {
+    width: 100%; /* Make video responsive */
+  }
+
+  .keyboard {
+    max-width: 100%;
+  }
+
+  .keyboard-key {
+    width: 40px;
+    height: 40px;
+  }
+
+  .word-display {
+    font-size: 1.5rem; /* Make word display smaller on mobile */
+  }
 }

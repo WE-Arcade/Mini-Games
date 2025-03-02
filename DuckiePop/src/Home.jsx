@@ -1,8 +1,62 @@
-import React from "react";
+// 
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MusicButton from "./MusicButton";
 
 const Home = () => {
+  const [timeLeft, setTimeLeft] = useState(null);
+
+  useEffect(() => {
+    // Retrieve last visit date and set up a timer
+    const lastVisitDate = localStorage.getItem("lastVisitDate");
+    const today = new Date().toISOString().split("T")[0]; // Current date in YYYY-MM-DD format
+
+    if (lastVisitDate === today) {
+      // If already visited today, calculate the time left
+      const lastVisitTime = new Date(localStorage.getItem("lastVisitTime"));
+      const now = new Date();
+      const timeRemaining = 24 * 60 * 60 * 1000 - (now - lastVisitTime); // 24 hours - time passed
+
+      if (timeRemaining > 0) {
+        const timer = setInterval(() => {
+          setTimeLeft(timeRemaining);
+        }, 1000);
+
+        // Cleanup interval when the component is unmounted
+        return () => clearInterval(timer);
+      } else {
+        // If more than 24 hours passed, reset timer
+        setTimeLeft(0);
+      }
+    } else {
+      // Reset time left if it's a new day
+      setTimeLeft(0);
+    }
+  }, []);
+
+  const handleDailyWordClick = () => {
+    const lastVisitDate = localStorage.getItem("lastVisitDate");
+    const today = new Date().toISOString().split("T")[0]; // Current date
+
+    if (lastVisitDate === today) {
+      // Set last visit time
+      localStorage.setItem("lastVisitTime", new Date().toISOString());
+      alert("You've already visited the Daily Word today. Come back tomorrow!");
+    } else {
+      // Set the last visit date
+      localStorage.setItem("lastVisitDate", today);
+      localStorage.setItem("lastVisitTime", new Date().toISOString());
+    }
+  };
+
+  const formatTimeLeft = (ms) => {
+    const hours = Math.floor(ms / (1000 * 60 * 60));
+    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+    return `${hours}:${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   return (
     <div className="home-container p-8 h-screen bg-[#FBE6C2]">
       <div className="relative wall border-8 border-[#A67C52] h-full">
@@ -38,10 +92,13 @@ const Home = () => {
 
           {/* Other Options */}
           <div className="other-options flex space-x-6">
-            <Link to="/DailyWord">
+            <Link to="/DailyWord" onClick={handleDailyWordClick}>
               {/* Daily Word Button */}
-              <button className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out">
-                Daily Word
+              <button
+                className="bg-[#A67C52] text-white text-2xl px-12 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition transform duration-300 ease-in-out"
+                disabled={timeLeft > 0} // Disable the button if there's still time left
+              >
+                {timeLeft > 0 ? `Try Again in ${formatTimeLeft(timeLeft)}` : "Daily Word"}
               </button>
             </Link>
 
