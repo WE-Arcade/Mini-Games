@@ -7,6 +7,7 @@ import Categories from "./Categories";
 import TwoPlayer from "./TwoPlayer";
 import DailyWord from "./DailyWord";
 import { MusicProvider } from "./MusicContext";
+import TrainIcon from "./TrainIcon";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
 
   return (
     <MusicProvider>
+      <div>
+       <TrainIcon />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,6 +38,7 @@ function App() {
           <Route path="/DailyWord" element={<DailyWord />} />
         </Routes>
       </Router>
+      </div>
     </MusicProvider>
   );
 }
