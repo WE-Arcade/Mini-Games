@@ -99,3 +99,8 @@
     background-color: #ff7600;
     transform: scale(1.05);
   }
+  .selected {
+    border: 2px solid #007bff;
+    background-color: #e6f0ff;
+  }
+  
