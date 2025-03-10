@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 // Emulate __dirname in ESM
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -14,4 +13,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'), // Map '@' to the 'src' directory
     },
   },
+  publicDir: 'public', // Ensure Vite serves static files from 'public'
+  build: {
+    outDir: 'dist', // Output directory for production builds
+  }
 })
