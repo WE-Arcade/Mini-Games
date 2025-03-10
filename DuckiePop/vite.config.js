@@ -13,7 +13,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  publicDir: path.resolve(__dirname, 'public'),
+  publicDir: path.resolve(__dirname, ''),
   build: {
     outDir: 'dist',
   },
