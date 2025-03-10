@@ -1,3 +1,4 @@
+// 
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -18,15 +19,8 @@ const Home = () => {
       const timeRemaining = 24 * 60 * 60 * 1000 - (now - lastVisitTime); // 24 hours - time passed
 
       if (timeRemaining > 0) {
-        // Update time left every second
         const timer = setInterval(() => {
-          const newTimeLeft = timeRemaining - (new Date() - lastVisitTime);
-          if (newTimeLeft <= 0) {
-            clearInterval(timer);  // Stop the interval when time is up
-            setTimeLeft(0);  // Set timeLeft to 0 when time's up
-          } else {
-            setTimeLeft(newTimeLeft);
-          }
+          setTimeLeft(timeRemaining);
         }, 1000);
 
         // Cleanup interval when the component is unmounted
