@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './board.css';
 import { placeBomb, triggerExplosion, checkForBomb } from '../logic/bomberLogic';
 
-const socket = io('http://localhost:4000'); // Ensure this points to the backend server
+const socket = io('https://we-arcade.onrender.com/'); // Ensure this points to the backend server
 
 socket.on('connect', () => {
   console.log('Connected to server:', socket.id);
