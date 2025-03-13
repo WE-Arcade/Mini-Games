@@ -95,13 +95,19 @@ const Categories = () => {
         </div>
 
         {/* Play Button */}
-        <button
+        <Link to="/game">
+          <button className="play-button" disabled={!selectedCategory}>
+            Play Game
+          </button>
+        </Link>
+        
+        {/* <button
           className="play-button"
           onClick={handlePlayClick}
           disabled={!selectedCategory}
         >
           Play Game
-        </button>
+        </button> */}
 
         {/* Music Toggle Button - Now using the reusable component */}
         <MusicButton className="fixed bottom-6 left-6" />
