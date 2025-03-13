@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-/* Home Container */
 .home-04 {
   width: 3vw;
   height: auto;
@@ -17,13 +16,13 @@
 
 /* Basic Styling for the Container */
 .desktop-1 {
+  background-color: #FBE6C2; /* Light background for a cozy feel */
   display: flex;
   flex-direction: row; /* Change direction to row to place items side by side */
   justify-content: center;
   align-items: center;
   height: 90vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  background: #FBE6C2; /* Light background for a cozy feel */
   overflow: hidden;
   position: relative;
 }

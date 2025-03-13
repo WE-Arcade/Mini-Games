@@ -1,4 +1,3 @@
-// 
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -19,8 +18,15 @@ const Home = () => {
       const timeRemaining = 24 * 60 * 60 * 1000 - (now - lastVisitTime); // 24 hours - time passed
 
       if (timeRemaining > 0) {
+        // Update time left every second
         const timer = setInterval(() => {
-          setTimeLeft(timeRemaining);
+          const newTimeLeft = timeRemaining - (new Date() - lastVisitTime);
+          if (newTimeLeft <= 0) {
+            clearInterval(timer);  // Stop the interval when time is up
+            setTimeLeft(0);  // Set timeLeft to 0 when time's up
+          } else {
+            setTimeLeft(newTimeLeft);
+          }
         }, 1000);
 
         // Cleanup interval when the component is unmounted
@@ -62,7 +68,7 @@ const Home = () => {
       <div className="relative wall border-8 border-[#A67C52] h-full">
         {/* Background Image */}
         <img
-          src="public/icons/home-duckie.webp"
+          src="/icons/home-duckie.webp"
           alt="Game Logo"
           className="absolute inset-0 w-full h-full object-cover blur-md opacity-25"
         />
@@ -71,7 +77,7 @@ const Home = () => {
         <div className="game-box flex flex-col items-center justify-center h-full space-y-10">
           {/* Logo */}
           <img
-            src="public/icons/logo.png"
+            src="/icons/logo.png"
             alt="Game Title"
             className="w-1/2 mb-6"
           />
@@ -81,7 +87,7 @@ const Home = () => {
             <Link to="/categories">
               <button className="bg-[#94B49F] text-white text-4xl px-16 py-6 rounded-full shadow-xl hover:scale-110 hover:shadow-2xl transition transform duration-300 ease-in-out">
                 <img
-                  src="public/icons/play.ico"
+                  src="/icons/play.ico"
                   alt="Play Icon"
                   className="inline-block w-10 mr-3"
                 />
