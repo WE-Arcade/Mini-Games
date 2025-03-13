@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './board.css';
 import { placeBomb, triggerExplosion, checkForBomb } from '../logic/bomberLogic';
 
-const socket = io('http://localhost:3000'); // Ensure this points to the backend server
+const socket = io('http://localhost:4000'); // Ensure this points to the backend server
 
 socket.on('connect', () => {
   console.log('Connected to server:', socket.id);
@@ -25,6 +25,12 @@ initialBoard[3][4] = { type: 'regular', player: 'B' };
 initialBoard[4][3] = { type: 'regular', player: 'B' };
 initialBoard[4][4] = { type: 'regular', player: 'R' };
 
+const shifuImage = 'public/images/Shifu.jpg';
+const compliments = ["Impressive move!", "You're getting the hang of this!", "Well done!", "Okay, show off.", "Beginner's luck? Or did you sell your soul for this?"
+, "I think you're enjoying this a little too much."];
+const sarcasm = ["Is that all you've got?", "Even a duck could do better!", "Shifu is unimpressed...", "Calculating your master plan... or just randomly clicking?", "Ah yes, the classic 'hope for the best' tactic."];
+
+
 const Board = () => {
   const { gameCode } = useParams();
   const navigate = useNavigate();
@@ -41,12 +47,13 @@ const Board = () => {
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
   const [assignedColor, setAssignedColor] = useState(null);
+  const [shifuComment, setShifuComment] = useState('');
 
   useEffect(() => {
     console.log('Joining game:', gameCode);
     socket.emit('joinGame', { gameCode });
 
-    if (gameCode === 'computer') {
+    if (gameCode === 'shifu') {
       setAssignedColor('B');
     }
 
@@ -79,6 +86,9 @@ const Board = () => {
     };
   }, [gameCode]);
 
+  const [prevBlueCount, setPrevBlueCount] = useState(2);
+  const [prevRedCount, setPrevRedCount] = useState(2);
+
   const calculatePieceCount = (board) => {
     let blue = 0;
     let red = 0;
@@ -88,6 +98,8 @@ const Board = () => {
         if (cell.player === 'R') red++;
       });
     });
+    setPrevBlueCount(blueCount); // Store previous counts
+    setPrevRedCount(redCount);
     setBlueCount(blue);
     setRedCount(red);
   };
@@ -224,6 +236,34 @@ const Board = () => {
   }, [board, currentPlayer]);
 
   const makeComputerMove = () => {
+    const userGain = blueCount - prevBlueCount;
+    const shifuGain = redCount - prevRedCount;
+
+    console.log(userGain);
+    console.log(shifuGain);
+    const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+    const randomSarcasm = sarcasm[Math.floor(Math.random() * sarcasm.length)];
+
+    if (shifuGain > userGain) {
+      console.log('Shifu Comment (Shifu gains more pieces):', randomSarcasm);
+      setShifuComment(`😏 ${randomSarcasm}`);
+      showNotification(shifuComment);
+      
+    } else if (userGain > shifuGain) {
+      console.log('Shifu Comment (User gains more pieces):', randomCompliment);
+      setShifuComment(`👏 ${randomCompliment}`);
+      showNotification(shifuComment);
+    } else {
+      console.log('Shifu Comment (Tie): Seems like we are evenly matched...');
+      setShifuComment('🤔 Seems like we are evenly matched...');
+      showNotification(shifuComment);
+    }
+
+    // Clear Shifu's comment after 5 seconds
+    setTimeout(() => {
+      setShifuComment('');
+    }, 5000);
+
     const validMoves = calculateValidMoves(board, 'R');
     if (validMoves.length > 0) {
       const [row, col] = validMoves[Math.floor(Math.random() * validMoves.length)];
@@ -236,10 +276,16 @@ const Board = () => {
       setCurrentPlayer('B');
       showNotification("Computer has no valid moves, your turn again!");
     }
+    const playerValidMoves = calculateValidMoves(board, 'B');
+    if (playerValidMoves.length === 0) {
+      // No valid moves for player, pass turn back to computer
+      showNotification("You have no valid moves, computer's turn!");
+      makeComputerMove();
+    };
   };
 
   useEffect(() => {
-    if (gameCode === 'computer' && currentPlayer === 'R') {
+    if (gameCode === 'shifu' && currentPlayer === 'R') {
       setTimeout(makeComputerMove, 1000); // Delay for computer move
     }
   }, [currentPlayer, gameCode]);
@@ -270,6 +316,10 @@ const Board = () => {
 
     // Emit move to server
     socket.emit('makeMove', { gameCode, move });
+
+    // Store previous counts before making the move
+    setPrevBlueCount(blueCount);
+    setPrevRedCount(redCount);
 
     // Handle shield placement
     if (selectedDucky === 'shield') {
@@ -328,6 +378,33 @@ const Board = () => {
     setBoard(updatedBoard);
     calculatePieceCount(updatedBoard);
 
+    // Determine piece gains for user and Shifu
+    const userGain = blueCount - prevBlueCount;
+    const shifuGain = redCount - prevRedCount;
+
+    // Randomize comments
+    const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+    const randomSarcasm = sarcasm[Math.floor(Math.random() * sarcasm.length)];
+
+    // Set Shifu's speech bubble comment
+    if (userGain > shifuGain) {
+      console.log('Shifu Comment (user gains more pieces):', randomCompliment);
+      setShifuComment(`👏 ${randomCompliment}`);
+    } else if (shifuGain > userGain) {
+      console.log('Shifu Comment (Shifu gains more pieces):', randomSarcasm);
+      setShifuComment(`😏 ${randomSarcasm}`);
+    } else {
+      console.log('Shifu Comment (Tie): A tie? Is that all you got?');
+      setShifuComment('🤔 A tie? Is that all you got?');
+    }
+
+    // Clear the comment after 5 seconds
+    setTimeout(() => {
+      setShifuComment('');
+    }, 5000);
+
+
+
     // Check if the current move triggers a bomb explosion
     if (bombs[currentPlayer] && [row, col].toString() === bombs[currentPlayer].toString()) {
       triggerExplosion(row, col, currentPlayer, board, setBoard); // Trigger explosion if bomb is stepped on
@@ -369,6 +446,8 @@ const Board = () => {
         imageSrc = '/images/red_shield_duckie.png';
       } else if (piece.type === 'bomb') {
         imageSrc = '/images/red_bomb_duckie.png';
+      } else if (piece.player === 'R') {
+        imageSrc = gameCode === 'shifu' ? shifuImage : 'public/images/Shifu.jpg';
       }
     }
 
@@ -400,25 +479,47 @@ const Board = () => {
         </button>
       </div>
 
-        {/* Piece Count */}
-        <div className="piece-count">
-          <div>
-            <img
-                className="duckie-img"
-                src={'/images/blue_duckie.png'}
-                alt="Blue Ducky"
-            />
-            : {blueCount}
-          </div>
-          <div>
-            <img
-                className="duckie-img"
-                src={'/images/red_duckie.png'}
-                alt="Red Ducky"
-            />
-            : {redCount}
+        {/* Piece Count*/}
+        <div className="piece-count-container">
+          {/* Piece Count */}
+          <div className="piece-count">
+            <div>
+              <img
+                  className="duckie-img"
+                  src={'/images/blue_duckie.png'}
+                  alt="Blue Ducky"
+              />
+              : {blueCount}
+            </div>
+            <div>
+              <img
+                  className="duckie-img"
+                  src={'/images/red_duckie.png'}
+                  alt="Red Ducky"
+              />
+              : {redCount}
+            </div>
           </div>
         </div>
+
+        {/* Shifu (centered) */}
+        {gameCode === 'shifu' && (
+          <div className="shifu-center-container">
+            <div className="shifu-container">
+              <img
+                className="shifu-img"
+                src={`${process.env.PUBLIC_URL}/images/Shifu.jpg`}
+                alt="Shifu Opponent"
+              />
+              <p className="shifu-label">Shifu Opponent</p>
+              <div className={`shifu-speech-bubble ${shifuComment ? 'visible' : 'hidden'}`}>
+                <p>{shifuComment}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+
 
         {/* Game Over Message */}
         {gameOver && (
@@ -476,8 +577,10 @@ const Board = () => {
           <button
               onClick={() => setSelectedDucky('bomb')}
               className={selectedDucky === 'bomb' ? 'selected' : ''}
+              disabled
           >
-            <p className="button-text">Bomber Ducky</p>
+            <p className="button-text">Bomber Ducky: </p>
+            Coming Soon!
             <img
                 className="duckie-img"
                 src={assignedColor === 'B' ? '/images/blue_bomb_duckie.png' : '/images/red_bomb_duckie.png'}
