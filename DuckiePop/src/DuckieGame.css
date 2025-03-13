@@ -64,14 +64,16 @@ div.game-container {
   height: 100%;
   width: 100%;
   padding-top: 0; /* Remove unnecessary top padding */
+  padding-left: 10vw; /* Add padding to the left to separate content from the left edge */
+  padding-right: 10vw; /* Add padding to the right to separate content from the right edge */
 }
 /* Header and Game Stats */
 div.header {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  padding: 45px;
-  font-size: 1.5rem;
+  width: 100%;
+  padding: 40px;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #ac0d0d;
   margin-bottom: 1rem;
@@ -94,6 +96,10 @@ div.word-display {
   gap: 1rem;
   margin: 2rem;
   justify-content: center;
+  overflow-wrap: anywhere;
+  overflow: auto;
+  overflow-x: auto;
+  overflow-anchor: auto;
 }
 
 span.letter {
@@ -263,7 +269,7 @@ div.title {
 
 /* Video */
 video.duckie-video {
-  width: 80vw;  /* Adjust width to make it bigger */
+  width: 50vw;  /* Adjust width to make it bigger */
   height: auto;  /* Let the height scale naturally */
   object-fit: cover;  /* Maintain aspect ratio */
   border-radius: 10px;  /* Optional: rounded corners */
