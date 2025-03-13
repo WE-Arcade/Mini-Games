@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-.home-04 {
+div.home-04 {
   width: 3vw;
   height: auto;
   position: absolute;
@@ -15,7 +15,7 @@
 }
 
 /* Basic Styling for the Container */
-.desktop-1 {
+div.desktop-1 {
   background-color: #FBE6C2; /* Light background for a cozy feel */
   display: flex;
   flex-direction: row; /* Change direction to row to place items side by side */
@@ -28,21 +28,13 @@
 }
 
 /* Left Side for Duckie Image */
-.duckie-pool {
+div.duckie-pool {
   border-radius: 50%;
   position: relative;
   left: 5vw;
-  top: 12vh;
+  top: 25vh;
   margin-right: 2rem; /* Add margin to the right to separate Duckie and other content */
   flex: 1; /* Allow Duckie to take flexible space */
-}
-
-/* Duckie Image Styling */
-.duckie-image {
-  width: 30vw;
-  height: auto;
-  left: 5vw;
-  transition: transform 0.5s ease;
 }
 
 /* Wrong guesses movement */
@@ -63,7 +55,7 @@
 }
 
 /* Right Side for Other Game Elements */
-.game-container {
+div.game-container {
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -74,29 +66,29 @@
   padding-top: 0; /* Remove unnecessary top padding */
 }
 /* Header and Game Stats */
-.header {
+div.header {
   display: flex;
   justify-content: space-between;
   width: 80%;
-  padding: 50px;
+  padding: 45px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #ac0d0d;
   margin-bottom: 1rem;
 }
 
-.score, .boosters, .hints {
+div.score, div.boosters, div.hints {
   text-align: center;
   flex: 1;
 }
-.bombed-letter {
+span.bombed-letter {
   color: red;
   font-weight: bold;
   font-size: 2rem;
   text-decoration: line-through;  /* Optional: strike-through effect */
 }
 /* Word Display */
-.word-display {
+div.word-display {
   font-size: 3rem;
   display: flex;
   gap: 1rem;
@@ -104,13 +96,13 @@
   justify-content: center;
 }
 
-.letter {
+span.letter {
   font-size: 3rem;
   font-weight: bold;
   color: #f48b29;
 }
 
-.keyboard-key {
+button.keyboard-key {
   font-size: 1.2rem;
   border-radius: 5px;
   background-color: #f0c929;
@@ -119,17 +111,17 @@
   transition: background-color 0.3s ease;
 }
 
-.keyboard-key:disabled {
+button.keyboard-key:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
 }
 
-.keyboard-key:hover:not(:disabled) {
+button.keyboard-key:hover:not(:disabled) {
   background-color: #f48b29;
 }
 
 /* Action Buttons */
-.actions {
+div.actions {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
@@ -137,7 +129,7 @@
   justify-content: center;
 }
 
-.action-button {
+button.action-button {
   padding: 1rem 2rem;
   font-size: 1.2rem;
   background-color: #f48b29;
@@ -148,17 +140,17 @@
   transition: background-color 0.3s ease;
 }
 
-.action-button:disabled {
+button.action-button:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
 }
 
-.action-button:hover:not(:disabled) {
+button.action-button:hover:not(:disabled) {
   background-color: #ac0d0d;
 }
 
 /* Game State Messages */
-.game-message {
+div.game-message {
   font-size: 2rem;
   font-weight: bold;
   color: #f48b29;
@@ -166,29 +158,30 @@
   margin-top: 2rem;
 }
 
-/* Coins Display */
-.coinsimg {
-  width: 4vw;
-  height: auto;
-  position: absolute;
-  left: 86vw;
-  top: 5vh;
-  overflow: visible;
-}
 
-.coins {
+div.coins {
   color: #ac0d0d;
   text-align: center;
+  align-items: center;
   font-family: "Inter-ExtraBold", sans-serif;
   font-size: 20px;
   font-weight: 800;
   position: absolute;
   left: 89.5vw;
-  top: 7.5vh;
-  width: 5vw;
-  height: 33px;
+  top: 2.5vh;
+  display: flex;
+  flex-direction: row;
 }
 
+/* Coins Display */
+img.coins-icon {
+  padding-right: 5px;
+  width: 3vw;
+  height: auto;
+  left: 86vw;
+  top: 0vh;
+  overflow: visible;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .word-display {
@@ -229,12 +222,12 @@
 }
 
 /* Restart Button */
-.restart-container {
+div.restart-container {
   margin-top: 20px;
   text-align: center;
 }
 
-.restart-button {
+button.restart-button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #f48b29;
@@ -245,31 +238,31 @@
   transition: background-color 0.3s;
 }
 
-.restart-button:hover {
+button.restart-button:hover {
   background-color: #ac0d0d;
 }
 
-.restart-button:disabled {
+button.restart-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
 /* Title */
-.title {
+div.title {
   color: #ac0d0d;
   text-align: center;
   font-family: "-", sans-serif;
-  font-size: 70px;
+  font-size: 100px;
   font-weight: 400;
   position: absolute;
   left: 7vw;
   top: 40px;
-  width: 497px;
+  width: 400px;
   height: 188px;
 }
 
 /* Video */
-.duckie-video {
+video.duckie-video {
   width: 80vw;  /* Adjust width to make it bigger */
   height: auto;  /* Let the height scale naturally */
   object-fit: cover;  /* Maintain aspect ratio */
@@ -277,20 +270,24 @@
   margin-bottom: 2rem;  /* Reduce space between Duckie video and keyboard */
 }
 
+video.aruvi-video {
+  width: 0;
+  height: 0;
+}
 
 video {
   background-color: transparent;
 }
 
 /* Action Buttons */
-.actions {
+div.actions {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
   margin-left: 30px;
 }
 
-.action-button {
+button.action-button {
   background-color: #f48b29;
   border: none;
   margin-top: 20px;
@@ -305,7 +302,7 @@ video {
   position: relative;
 }
 
-.badge-container {
+div.badge-container {
   position: absolute;
   top: -5px;
   right: -5px;
@@ -314,7 +311,7 @@ video {
   align-items: center;
 }
 
-.badge {
+div.badge {
   background-color: #ac0d0d;
   color: white;
   border-radius: 50%;
@@ -327,7 +324,13 @@ video {
 }
 
 /* Coin and Icon sizes */
-.bomb, .hint, .eraser {
+img.bomb, img.hint, img.eraser {
   width: 2vw;
   height: auto;
+}
+
+img.aruvi-image {
+  width: 500px;
+  height: auto;
+  padding-left: 20px;
 }

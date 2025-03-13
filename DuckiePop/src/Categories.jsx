@@ -36,73 +36,74 @@ const Categories = () => {
   
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    localStorage.setItem('selectedCategory', category.name);
+    localStorage.setItem('gameWords', JSON.stringify(category.words));
   };
 
   const handlePlayClick = () => {
     if (selectedCategory) {
       // Store the selected words and category in localStorage
-      localStorage.setItem('gameWords', JSON.stringify(selectedCategory.words));
-      localStorage.setItem('selectedCategory', selectedCategory.name);
       window.location.href = '/game';
     }
   };
 
   return (
-    <div className="categories-page">
+    <div class="categories-page">
       {/* Home Icon */}
-      <div className="home-icon">
-      <Link to="/" className="home-icon">
+      <div class="home-icon">
+      <Link to="/" class="home-icon">
      <img src="/icons/home.ico" alt="Home" />
       </Link>
       </div>
 
       {/* Logo */}
-      <header className="categories-header">
-        <img src="/icons/duckie_logo.png" alt="Don't Pop The Duckie Logo" className="logo" />
+      <header class="categories-header">
+        <img src="/icons/duckie_logo.png" alt="Don't Pop The Duckie Logo" class="logo" />
       </header>
-      <div className="video-section">
-  <div className="video-wrapper">
+      <div class="video-section">
+  <div class="video-wrapper">
     <video 
-      className="centered-video" 
+      class="centered-video" 
       autoPlay 
       onEnded={() => console.log('Video finished playing')}
     >
       <source src="/videos/start.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
+    <img src="/icons/categories-aruvi.png" alt="Aruvi Image" class="aruvi_image" />
   </div>
 </div>
 
 
       {/* Categories Section */}
-      <section className="categories-section">
-        <h2 className="categories-title">Choose a Category</h2>
-        <div className="categories-container">
+      <section class="categories-section">
+        <h2 class="categories-title">Choose a Category</h2>
+        <div class="categories-container">
           {categories.map((category) => (
             <div
-              className={`category-card ${selectedCategory?.id === category.id ? 'selected' : ''}`}
+              class={`category-card ${selectedCategory?.id === category.id ? 'selected' : ''}`}
               key={category.id}
               onClick={() => handleCategoryClick(category)}
             >
               <img
                 src={category.imgSrc}
                 alt={category.name}
-                className="category-image"
+                class="category-image"
               />
-              <h3 className="category-name">{category.name}</h3>
+              <h3 class="category-name">{category.name}</h3>
             </div>
           ))}
         </div>
 
         {/* Play Button */}
         <Link to="/game">
-          <button className="play-button" disabled={!selectedCategory}>
+          <button class="play-button" disabled={!selectedCategory}>
             Play Game
           </button>
         </Link>
         
         {/* <button
-          className="play-button"
+          class="play-button"
           onClick={handlePlayClick}
           disabled={!selectedCategory}
         >
@@ -110,7 +111,7 @@ const Categories = () => {
         </button> */}
 
         {/* Music Toggle Button - Now using the reusable component */}
-        <MusicButton className="fixed bottom-6 left-6" />
+        <MusicButton class="fixed bottom-6 left-6" />
 
       </section>
     </div>

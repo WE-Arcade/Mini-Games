@@ -263,7 +263,7 @@ const DuckieGame = () => {
   const [boosters, setBoosters] = useState(3);
   const [hints, setHints] = useState(3);
   const [undoCount, setUndoCount] = useState(3);
-  const [bombedLetters, setBombedLetters] = useState([]); // Track bombed letters
+  const [bombedLetters, setBombedLetters] = useState([]); // Tzrack bombed letters
 
   const videoRef = useRef(null);
 
@@ -408,7 +408,7 @@ const DuckieGame = () => {
 
   return (
     <div className="desktop-1">
-      <MusicButton className="fixed bottom-6 left-6" />
+      <MusicButton className="fixed bottom-6 right-6" />
       {gameState === "won" || gameState === "lost" ? (
         <div>
           <Link to="/">
@@ -418,21 +418,24 @@ const DuckieGame = () => {
             <img className="titleimg" src="/icons/logo.png" alt="title" />
           </div>
           <video 
-            className="duckie-video" 
+            className="aruvi-video" 
             autoPlay 
             playsInline 
-            style={{ width: "400px", height: "300px" }}
           >
             <source src={getDuckieVideo()} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <div className="image-aruvi-image">
+          {gameState === 'won' ? (<img className='aruvi-image' src="/icons/winning-aruvi.png" alt="Aruvi Image" />) :
+           (<img className='aruvi-image' src="/icons/losing-aruvi.png" alt="Aruvi Image" />)}
+          </div>
           <div className="game-message">
-            {gameState === 'won' ? 'You Win!' : 'You Lose!'}
+            {gameState === 'won' ? 'You Win!' : 'You Lose! Your Duckie has popped!'}
             <br />
             The word was: <strong>{targetWord}</strong>
           </div>
           <div className="coins">
-              <img className="coins-icon" src="/icons/pileOfCoins.ico" alt="Coins Icon" style={{ width: '40px', height: '40px', marginLeft: '5px' }} />
+              <img className="coins-icon" src="/icons/singleCoin.ico" alt="Coins Icon" style={{ width: '40px', height: '40px', marginLeft: '5px' }} />
              {coins} {/* Display coins only after game ends */}
           </div>
 
@@ -468,6 +471,7 @@ const DuckieGame = () => {
           </div>
           <div className="game-container">
             <div className="header">
+              Category: {selectedCategory}
               <div className="wrong-guesses">Moves: {4 - wrongGuesses} </div>
             </div>
             <div className="word-display">{renderWord()}</div>

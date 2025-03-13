@@ -108,13 +108,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;  /* Or a specific height like '400px' depending on your layout */
 }
 
 /* Apply rounded corners and any other desired styles */
 .centered-video {
-  border-radius: 20px;  /* Adjust the value for more or less roundness */
-  width: 200px;         /* Adjust width as per your design */
-  height: 200px;        /* Keep width and height equal for a circular video */
+  height: 0px;  /* Or a specific height like '400px' depending on your layout */
+  width: 0px; 
+}
+
+.aruvi_image {
+  height: 300px;         /* Adjust width as per your design */
   object-fit: cover;    /* Ensures the video fits well inside the container */
 }
