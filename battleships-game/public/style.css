@@ -1,12 +1,22 @@
 body {
   margin: 0;
-  background-color: #F3F3F3;
+  background-image: url('/images/grassy-backg.webp');
+  background-repeat: repeat;
+  background-size: 250px 250px;
   overflow-x: hidden;
 }
 
 *, *::before, *::after {
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
+}
+
+.info-text {
+  display: flex;
+  justify-content: center;
+  margin: 2vmin;
+  font-size: 2rem;
+  color: white;
 }
 
 .splash-container {
@@ -18,8 +28,9 @@ body {
 }
 
 .splash-title {
-  font-family: 'Bangers', cursive;
+  font-family: 'Bangers';
   font-size: 10rem;
+  color: white;
 }
 
 .splash-battleship-image {
@@ -52,6 +63,62 @@ body {
   font-size: 2rem;
   margin-left: 2rem;
 }
+.placed {
+  position: absolute;
+}
+
+.destroyer-container {
+  --width: 2;
+  background-image: url('/images/two-train.png');
+}
+
+.submarine-container {
+  --width: 3;
+  background-image: url('/images/three-1-train.png');
+}
+.cruiser-container {
+  --width: 3;
+  background-image: url('/images/three-2-train.png');
+}
+
+.battleship-container {
+  --width: 4;
+  background-image: url('/images/four-train.png');
+}
+
+.carrier-container {
+  --width: 5;
+  background-image: url('/images/five-train.png');
+}
+.destroyer-container-vertical {
+  --height: 2;
+  --width: 1;
+  background-image: url('/images/two-train copy.png');
+}
+
+.submarine-container-vertical {
+  --height: 3;
+  --width: 1;
+  background-image: url('/images/three-1-train copy.png');
+}
+
+.cruiser-container-vertical {
+  --height: 3;
+  --width: 1;
+  background-image: url('/images/three-2-train copy.png');
+}
+
+.battleship-container-vertical {
+  --height: 4;
+  --width: 1;
+  background-image: url('/images/four-train copy.png');
+}
+.carrier-container-vertical {
+  --height: 5;
+  --width: 1;
+  background-image: url('/images/five-train copy.png');
+}
+
 
 .splash-btn:first-child {
   margin-left: 0;
@@ -66,23 +133,94 @@ body {
 .battleship-grid {
   margin: 2vmin;
   display: grid;
-  background-color: hsl(200, 100%, 50%);
+  /* background-color: hsl(200, 100%, 50%); */
   grid-template-rows: repeat(10, 4.6vmin);
   grid-template-columns: repeat(10, 4.6vmin);
 }
 
+.players-status {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vmin;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+
+
+.taken.destroyer {
+  background-image: url('/images/two-train.png');
+}
+
+.taken.submarine {
+  background-image: url('/images/three-1-train.png');
+}
+
+.taken.cruiser {
+  background-image: url('/images/three-2-train.png');
+}
+
+.taken.battleship {
+  background-image: url('/images/four-train.png');
+}
+.taken.destroyer.vertical {
+  background-image: url('/images/two-train copy.png');
+}
+
+.taken.destroyer.horizontal {
+  background-image: url('/images/two-train.png');
+}
+
+.taken.submarine.vertical {
+  background-image: url('/images/three-1-train copy.png');
+}
+
+.taken.submarine.horizontal {
+  background-image: url('/images/three-1-train.png');
+}
+
+.taken.cruiser.vertical {
+  background-image: url('/images/three-2-train copy.png');
+}
+
+.taken.cruiser.horizontal {
+  background-image: url('/images/three-2-train.png');
+}
+
+.taken.carrier.vertical {
+  background-image: url('/images/five-train copy.png');
+}
+
+.taken.carrier.horizontal {
+  background-image: url('/images/five-train.png');
+}
+.taken.battleship.vertical {
+  background-image: url('/images/four-train copy.png');
+}
+
+.taken.battleship.horizontal {
+  background-image: url('/images/four-train.png');
+}
+
+.taken.carrier {
+  background-image: url('/images/five-train.png');
+}
+.ship {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* background-color: hsl(0, 0%, 80%); */
+}
 .grid-computer > .taken,
 .grid-computer > .boom {
-  background-color: hsl(200, 100%, 50%) !important;
+  background-color: none !important;
+  background-image: none !important;
   border-radius: 0 !important;
 }
 
-.taken,
-.ship {
-  position: relative;
-  background-color: hsl(0, 0%, 80%);
-}
-
+/* 
 .taken.start.vertical,
 .taken.start.vertical::before {
   border-top-left-radius: 50%;
@@ -152,7 +290,7 @@ body {
     opacity: 0;
     transform: scaleY(1.5);
   }
-}
+} */
 
 .grid-display {
   display: flex;
@@ -169,50 +307,17 @@ body {
   margin: 1vmin;
   width: calc(4.6vmin * var(--width, 1));
   height: calc(4.6vmin * var(--height, 1));
-  border-radius: 2.3vmin;
+  /* border-radius: 2.3vmin; */
+  background-size: cover;
+  background-position: center;
 }
 
 .battleship-grid div {
-  border: 1px solid hsla(0, 0%, 100%, .2);
+  border: 3px dashed rgb(213, 213, 213);
+  background-size: cover;
+  background-position: center;
 }
 
-.destroyer-container {
-  --width: 2;
-}
-
-.destroyer-container-vertical {
-  --height: 2;
-  --width: 1;
-}
-
-.submarine-container,
-.cruiser-container {
-  --width: 3;
-}
-
-.submarine-container-vertical,
-.cruiser-container-vertical {
-  --height: 3;
-  --width: 1;
-}
-
-.battleship-container {
-  --width: 4;
-}
-
-.battleship-container-vertical {
-  --height: 4;
-  --width: 1;
-}
-
-.carrier-container {
-  --width: 5;
-}
-
-.carrier-container-vertical {
-  --height: 5;
-  --width: 1;
-}
 
 .hidden-info {
   font-size: 1.5rem;
@@ -239,6 +344,7 @@ body {
   width: 2vmin;
   height: 2vmin;
 }
+
 
 .miss::after {
   background-color: white;
@@ -280,7 +386,7 @@ body {
   }
 
   100% {
-    background-color: hsl(0, 0%, 80%);
+    /* background-color: hsl(0, 0%, 80%); */
   }
 }
 
@@ -298,4 +404,35 @@ body {
 .ready.active {
   opacity: 1;
   text-decoration: none;
+}
+
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.hide {
+  display: none;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.aruvi-icon {
+  width: 150px;
+  height: auto;
+}
+
+.caption {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }

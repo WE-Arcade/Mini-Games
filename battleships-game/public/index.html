@@ -2,19 +2,34 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Battle Ships</title>
+    <title>BattleTrains</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="splash-container">
-      <h1 class="splash-title">Battleship</h1>
+      <h1 class="splash-title">BattleTrains!</h1>
       <div>
-        <a href="/singleplayer.html" class="btn splash-btn">Single Player</a>
-        <a href="/multiplayer.html" class="btn splash-btn">Multiplayer</a>
+        <a href="/singleplayer.html" class="btn splash-btn">Single-Player</a>
+        <a href="/multiplayer.html" class="btn splash-btn">Multi-Player</a>
       </div>
     </div>
 
-    <img src="/images/battleship-large.svg" class="splash-battleship-image">
+
+    <div class="grid-display">
+      <div id="destroyer" class="ship destroyer-container"></div>
+      <div id="submarine" class="ship submarine-container"></div>
+      <div id="cruiser" class="ship cruiser-container"></div>
+      <div id="battleship" class="ship battleship-container"></div>
+      <div id="carrier" class="ship carrier-container"></div>
+      <div id="destroyer" class="ship destroyer-container"></div>
+      <div id="submarine" class="ship submarine-container"></div>
+      <div id="cruiser" class="ship cruiser-container"></div>
+      <div id="battleship" class="ship battleship-container"></div>
+      <div id="carrier" class="ship carrier-container"></div>
+    </div>
+    <div class="battleship-grid"></div>
+
+    <script src="drag-and-drop.js"></script>
   </body>
 </html>
