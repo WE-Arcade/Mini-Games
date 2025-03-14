@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }));
     }
     if (currentPlayer === 'enemy') {
-      turnDisplay.innerHTML = 'Computers Go';
+      turnDisplay.innerHTML = "Aruvi's Go";
       setTimeout(enemyGo, 1000);
     }
   }
