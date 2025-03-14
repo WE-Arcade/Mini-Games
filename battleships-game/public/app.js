@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (currentPlayer === 'enemy') {
       turnDisplay.innerHTML = "Aruvi's Go";
-      setTimeout(enemyGo, 1000);
+      setTimeout(enemyGo, 3000);
     }
   }
 
@@ -432,6 +432,8 @@ document.addEventListener('DOMContentLoaded', () => {
       infoDisplay.innerHTML = `${enemy} sunk your carrier`;
       cpuCarrierCount = 10;
     }
+    console.log(destroyerCount, submarineCount, cruiserCount, battleshipCount, carrierCount);
+    console.log(cpuDestroyerCount, cpuSubmarineCount, cpuCruiserCount, cpuBattleshipCount, cpuCarrierCount);
 
     if ((destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount) === 50) {
       infoDisplay.innerHTML = "YOU WIN";

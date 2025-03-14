@@ -34,37 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropZone = e.target;
 
     if (dropZone.classList.contains('battleship-grid')) {
-    dropZone.appendChild(draggable);
-    draggable.style.position = 'absolute';
-    draggable.style.left = `${e.offsetX - draggable.offsetWidth / 2}px`;
-    draggable.style.top = `${e.offsetY - draggable.offsetHeight / 2}px`;
-    updateShipImage(draggable);
-    draggable.classList.add('placed');
-    }
-  }
+      const shipType = draggable.classList[1]; // Assuming the second class is the ship type
+      const shipLength = parseInt(getComputedStyle(draggable).getPropertyValue('--width'));
+      const shipHeight = parseInt(getComputedStyle(draggable).getPropertyValue('--height')) || 1;
 
-  function updateShipImage(ship) {
-    const shipType = ship.classList[1]; // Assuming the second class is the ship type
-    switch (shipType) {
-      case 'destroyer-container':
-        ship.style.backgroundImage = "url('/images/two-train.png')";
-        break;
-      case 'submarine-container':
-        ship.style.backgroundImage = "url('/images/three-train-1.png')";
-        break;
-      case 'cruiser-container':
-        ship.style.backgroundImage = "url('/images/three-train-2.png')";
-        break;
-      case 'battleship-container':
-        ship.style.backgroundImage = "url('/images/four-train.png')";
-        break;
-      case 'carrier-container':
-        ship.style.backgroundImage = "url('/images/five-train.png')";
-        break;
-      default:
-        break;
+      for (let i = 0; i < shipLength; i++) {
+        const cell = document.createElement('div');
+        cell.style.backgroundImage = draggable.style.backgroundImage;
+        cell.style.backgroundSize = 'cover';
+        cell.style.backgroundPosition = 'center';
+        cell.classList.add('placed');
+        dropZone.appendChild(cell);
+      }
+
+      draggable.remove();
     }
-    ship.style.backgroundSize = 'cover';
-    ship.style.backgroundPosition = 'center';
   }
 });

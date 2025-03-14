@@ -133,7 +133,10 @@ body {
 .battleship-grid {
   margin: 2vmin;
   display: grid;
-  /* background-color: hsl(200, 100%, 50%); */
+  background-image: url('/images/brown-backg.webp');
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  overflow-x: hidden;
   grid-template-rows: repeat(10, 4.6vmin);
   grid-template-columns: repeat(10, 4.6vmin);
 }
@@ -147,42 +150,12 @@ body {
   font-size: 2rem;
   font-weight: bolder;
 }
-
-
-
-.taken.destroyer {
-  background-image: url('/images/two-train.png');
-}
-
-.taken.submarine {
-  background-image: url('/images/three-1-train.png');
-}
-
-.taken.cruiser {
-  background-image: url('/images/three-2-train.png');
-}
-
-.taken.battleship {
-  background-image: url('/images/four-train.png');
-}
-.taken.destroyer.vertical {
-  background-image: url('/images/two-train copy.png');
-}
-
 .taken.destroyer.horizontal {
   background-image: url('/images/two-train.png');
 }
 
-.taken.submarine.vertical {
-  background-image: url('/images/three-1-train copy.png');
-}
-
 .taken.submarine.horizontal {
   background-image: url('/images/three-1-train.png');
-}
-
-.taken.cruiser.vertical {
-  background-image: url('/images/three-2-train copy.png');
 }
 
 .taken.cruiser.horizontal {
@@ -206,7 +179,7 @@ body {
 
 .taken.carrier {
   background-image: url('/images/five-train.png');
-}
+} 
 .ship {
   position: relative;
   background-size: cover;
@@ -219,78 +192,6 @@ body {
   background-image: none !important;
   border-radius: 0 !important;
 }
-
-/* 
-.taken.start.vertical,
-.taken.start.vertical::before {
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-}
-
-.taken.end.vertical,
-.taken.end.vertical::before {
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-}
-
-.taken.start.horizontal,
-.taken.start.horizontal::before {
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-}
-
-.taken.end.horizontal,
-.taken.end.horizontal::before {
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
-}
-
-.taken.vertical::before,
-.taken.horizontal::before {
-  content: '';
-  position: absolute;
-  border: .3vmin solid white;
-  top: -1px;
-  bottom: -1px;
-  left: -1px;
-  right: -1px;
-}
-
-.taken.horizontal::before {
-  animation: ripplesY 3s linear infinite;
-  border-left: none;
-  border-right: none;
-}
-
-.taken.vertical::before {
-  animation: ripplesX 3s linear infinite;
-  border-top: none;
-  border-bottom: none;
-}
-
-@keyframes ripplesX {
-  0% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleX(1.5);
-  }
-}
-
-@keyframes ripplesY {
-  0% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleY(1.5);
-  }
-} */
 
 .grid-display {
   display: flex;
@@ -313,7 +214,7 @@ body {
 }
 
 .battleship-grid div {
-  border: 3px dashed rgb(213, 213, 213);
+  border: 1.5px dashed rgb(213, 213, 213);
   background-size: cover;
   background-position: center;
 }
