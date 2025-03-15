@@ -26,9 +26,8 @@ initialBoard[4][3] = { type: 'regular', player: 'B' };
 initialBoard[4][4] = { type: 'regular', player: 'R' };
 
 const shifuImage = 'public/images/Shifu.jpg';
-const compliments = ["Impressive move!", "You're getting the hang of this!", "Well done!", "Okay, show off.", "Beginner's luck? Or did you sell your soul for this?"
-, "I think you're enjoying this a little too much."];
-const sarcasm = ["Is that all you've got?", "Even a duck could do better!", "Shifu is unimpressed...", "Calculating your master plan... or just randomly clicking?", "Ah yes, the classic 'hope for the best' tactic."];
+const compliments = ["Not bad.", "You're getting the hang of this.", "Well done.", "Okay, show off.", "Beginner's luck? Or did you sell your soul for this?", "Someone finally read the documentation.", "I think you're enjoying this a little too much.", "Here, chocolate for you.", "*approving nod*"];
+const sarcasm = ["Is that all you've got?", "Even a duck could do better!", "Shifu is unimpressed...", "Calculating your master plan... or just randomly clicking?", "Ah yes, the classic 'hope for the best' tactic.", "Okay amma.", "READ the screen.", "We are outsourcing brains, now, are we?"];
 
 
 const Board = () => {
@@ -387,10 +386,10 @@ const Board = () => {
     const randomSarcasm = sarcasm[Math.floor(Math.random() * sarcasm.length)];
 
     // Set Shifu's speech bubble comment
-    if (userGain > shifuGain) {
+    if (blueCount > redCount) {
       console.log('Shifu Comment (user gains more pieces):', randomCompliment);
       setShifuComment(`👏 ${randomCompliment}`);
-    } else if (shifuGain > userGain) {
+    } else if (redCount > blueCount) {
       console.log('Shifu Comment (Shifu gains more pieces):', randomSarcasm);
       setShifuComment(`😏 ${randomSarcasm}`);
     } else {
@@ -476,6 +475,9 @@ const Board = () => {
         </button>
         <button className="icon-button" title="Restart" onClick={restartGame}> 
           <span className="material-icons">restart_alt</span>
+        </button>
+        <button className="icon-button"  title="Info" onClick={() => window.open("https://www.worldothello.org/about/about-othello/othello-rules/official-rules/english", "_blank")}>
+          <span className="material-icons">info</span>
         </button>
       </div>
 
