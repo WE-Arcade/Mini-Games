@@ -393,43 +393,43 @@ document.addEventListener('DOMContentLoaded', () => {
     let enemy = 'Aruvi';
     if (gameMode === 'multiPlayer') enemy = 'enemy';
     if (destroyerCount === 2) {
-      infoDisplay.innerHTML = `You sunk ${enemy}'s destroyer`;
+      infoDisplay.innerHTML = `You destroyed ${enemy}'s electric engine`;
       destroyerCount = 10;
     }
     if (submarineCount === 3) {
-      infoDisplay.innerHTML = `You sunk ${enemy}'s submarine`;
+      infoDisplay.innerHTML = `You destroyed ${enemy}'s compression-ignition engine`;
       submarineCount = 10;
     }
     if (cruiserCount === 3) {
-      infoDisplay.innerHTML = `You sunk ${enemy}'s cruiser`;
+      infoDisplay.innerHTML = `You destroyed ${enemy}'s coal wagon`;
       cruiserCount = 10;
     }
     if (battleshipCount === 4) {
-      infoDisplay.innerHTML = `You sunk ${enemy}'s battleship`;
+      infoDisplay.innerHTML = `You destroyed ${enemy}'s freight train`;
       battleshipCount = 10;
     }
     if (carrierCount === 5) {
-      infoDisplay.innerHTML = `You sunk ${enemy}'s carrier`;
+      infoDisplay.innerHTML = `You destroyed ${enemy}'s steam locomotive`;
       carrierCount = 10;
     }
     if (cpuDestroyerCount === 2) {
-      infoDisplay.innerHTML = `${enemy} sunk your destroyer`;
+      infoDisplay.innerHTML = `${enemy} destroyed your electric engine`;
       cpuDestroyerCount = 10;
     }
     if (cpuSubmarineCount === 3) {
-      infoDisplay.innerHTML = `${enemy} sunk your submarine`;
+      infoDisplay.innerHTML = `${enemy} destroyed your compression-ignition engine`;
       cpuSubmarineCount = 10;
     }
     if (cpuCruiserCount === 3) {
-      infoDisplay.innerHTML = `${enemy} sunk your cruiser`;
+      infoDisplay.innerHTML = `${enemy} destroyed your coal wagon`;
       cpuCruiserCount = 10;
     }
     if (cpuBattleshipCount === 4) {
-      infoDisplay.innerHTML = `${enemy} sunk your battleship`;
+      infoDisplay.innerHTML = `${enemy} destroyed your freight train`;
       cpuBattleshipCount = 10;
     }
     if (cpuCarrierCount === 5) {
-      infoDisplay.innerHTML = `${enemy} sunk your carrier`;
+      infoDisplay.innerHTML = `${enemy} destroyed your steam locomotive`;
       cpuCarrierCount = 10;
     }
     console.log(destroyerCount, submarineCount, cruiserCount, battleshipCount, carrierCount);

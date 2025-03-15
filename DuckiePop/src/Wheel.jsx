@@ -1,48 +1,24 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Phaser from "phaser";
 import './Wheel.css';
 import { Link } from "react-router-dom";
 import MusicButton from "./MusicButton";
 
 const Wheel = () => {
+  // Load initial values from localStorage
+  const [bombs, setBombs] = useState(() => parseInt(localStorage.getItem("bombs")) || 0);
+  const [hints, setHints] = useState(() => parseInt(localStorage.getItem("hints")) || 0);
+  const [coins, setCoins] = useState(() => parseInt(localStorage.getItem("coins")) || 0);
+  const [erases, setErases] = useState(() => parseInt(localStorage.getItem("erases")) || 0);
+
   useEffect(() => {
-    const bomb1 = "💣 Bomb 1";
-    const hint2 = "💡 Hint 2";
-    const coins3 = "💰 Coins 3";
-    const erase4 = "❌ Erase 4";
-    const bomb2 = "💣 Bomb 2";
-    const hint3 = "💡 Hint 3";
-    const coins4 = "💰 Coins 4";
-    const erase1 = "❌ Erase 1";
-    const bomb3 = "💣 Bomb 3";
-    const hint4 = "💡 Hint 4";
-    const coins1 = "💰 Coins 1";
-    const erase2 = "❌ Erase 2";
-    const bomb4 = "💣 Bomb 4";
-    const hint1 = "💡 Hint 1";
-    const coins2 = "💰 Coins 2";
-    const erase3 = "❌ Erase 3";
-    
     const gameOptions = {
       slices: 16,
       slicePrizes: [
-        bomb1,
-        hint2,
-        coins3,
-        erase4,
-        bomb2,
-        hint3,
-        coins4,
-        erase1,
-        bomb3,
-        hint4,
-        coins1,
-        erase2,
-        bomb4,
-        hint1,
-        coins2,
-        erase3,
+        "💣 Bomb 1", "💡 Hint 2", "💰 Coins 3", "❌ Erase 4",
+        "💣 Bomb 2", "💡 Hint 3", "💰 Coins 4", "❌ Erase 1",
+        "💣 Bomb 3", "💡 Hint 4", "💰 Coins 1", "❌ Erase 2",
+        "💣 Bomb 4", "💡 Hint 1", "💰 Coins 2", "❌ Erase 3"
       ],
       rotationTime: 3000,
     };
@@ -58,44 +34,33 @@ const Wheel = () => {
         this.load.image("duck", "/icons/duck.ico");
         this.load.image("curtains", "/icons/curtains.png");
       }
+
       create() {
         const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2-100;
-        this.wheel = this.add.sprite(centerX, centerY+50, "wheel");
-        this.wheel.setScale(0.8);
-        this.pin = this.add.sprite(centerX, centerY+50, "pin");
-        this.pin.setScale(1); 
-        this.prizeText = this.add.text(
-          centerX,
-          centerY+330,
-          "SPIN TO WIN",
-          {
-            font: "bold 32px Rajdhani",
-            align: "center",
-            color: "Black",
-          }
-        );
+        const centerY = window.innerHeight / 2 - 100;
+        this.wheel = this.add.sprite(centerX, centerY + 50, "wheel").setScale(0.8);
+        this.pin = this.add.sprite(centerX, centerY + 50, "pin").setScale(1);
+        this.prizeText = this.add.text(centerX, centerY + 330, "SPIN TO WIN", {
+          font: "bold 32px Rajdhani",
+          align: "center",
+          color: "Black",
+        }).setOrigin(0.5);
 
-        this.prizeText.setOrigin(0.5);
         this.canSpin = true;
         this.input.on("pointerdown", this.spinWheel, this);
-        
-        this.duck = this.add.sprite(centerX , centerY - 190, "duck");
-        this.duck.setScale(0.8);
-        this.duck.angle = -90;
 
-        this.curtains = this.add.sprite(centerX , centerY+70 , "curtains");
-        this.curtains.setScale(0);
+        this.duck = this.add.sprite(centerX, centerY - 190, "duck").setScale(0.8).setAngle(-90);
+        this.curtains = this.add.sprite(centerX, centerY + 70, "curtains").setScale(0);
       }
-      
-      spinWheel() {
+
+      spinWheel = () => {
         if (this.canSpin) {
           this.prizeText.setText("");
           const rounds = Phaser.Math.Between(4, 6);
           const degrees = Phaser.Math.Between(0, 360);
-          const prize =
-            gameOptions.slices - 1 -
-            Math.floor(degrees / (360 / gameOptions.slices));
+          const prizeIndex = gameOptions.slices - 1 - Math.floor(degrees / (360 / gameOptions.slices));
+          const prizeWon = gameOptions.slicePrizes[prizeIndex];
+
           this.canSpin = false;
           this.tweens.add({
             targets: [this.wheel],
@@ -103,13 +68,14 @@ const Wheel = () => {
             duration: gameOptions.rotationTime,
             ease: "Cubic.easeOut",
             callbackScope: this,
-            onComplete: function () {
-              this.prizeText.setText(gameOptions.slicePrizes[prize]);
+            onComplete: () => {
+              this.prizeText.setText(prizeWon);
+              updatePrize(prizeWon);
               this.canSpin = true;
             },
           });
         }
-      }
+      };
     }
 
     const gameConfig = {
@@ -147,27 +113,58 @@ const Wheel = () => {
     };
   }, []);
 
+  // Function to update the prize values
+  const updatePrize = (prizeWon) => {
+    if (prizeWon.includes("Bomb")) {
+      setBombs(prev => {
+        const newCount = prev + 1;
+        localStorage.setItem("bombs", newCount);
+        return newCount;
+      });
+    } else if (prizeWon.includes("Hint")) {
+      setHints(prev => {
+        const newCount = prev + 1;
+        localStorage.setItem("hints", newCount);
+        return newCount;
+      });
+    } else if (prizeWon.includes("Coins")) {
+      const coinsWon = parseInt(prizeWon.match(/\d+/)[0]); // Extract number from text
+      setCoins(prev => {
+        const newCount = prev + coinsWon;
+        localStorage.setItem("coins", newCount);
+        return newCount;
+      });
+    } else if (prizeWon.includes("Erase")) {
+      setErases(prev => {
+        const newCount = prev + 1;
+        localStorage.setItem("erases", newCount);
+        return newCount;
+      });
+    }
+  };
+
   return (
     <div>
-      {/* Add Link to "/" route for the home icon */}
+      {/* Home button */}
       <Link to="/">
-        <img
-          src="/icons/home.ico"
-          alt="Home"
-          className="home-logo"
-        />
+        <img src="/icons/home.ico" alt="Home" className="home-logo" />
       </Link>
-      
-      <img
-        src="/icons/logo.png"
-        alt="Game Title"
-        className="game-logo"
-      />
+
+      {/* Game title */}
+      <img src="/icons/logo.png" alt="Game Title" className="game-logo" />
+
       <div id="game-container"></div>
-      {/* <MusicButton></MusicButton> */}
+
+      {/* Music button */}
       <MusicButton className="music-button" />
 
-
+      {/* Display prize counts (updating directly) */}
+      <div className="prize-container">
+        <p><strong>💣 Bombs:</strong> {bombs}</p>
+        <p><strong>💡 Hints:</strong> {hints}</p>
+        <p><strong>💰 Coins:</strong> {coins}</p>
+        <p><strong>❌ Erases:</strong> {erases}</p>
+      </div>
     </div>
   );
 };

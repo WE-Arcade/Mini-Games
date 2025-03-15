@@ -158,19 +158,9 @@ body {
   background-image: url('/images/three-1-train.png');
 }
 
+
 .taken.cruiser.horizontal {
   background-image: url('/images/three-2-train.png');
-}
-
-.taken.carrier.vertical {
-  background-image: url('/images/five-train copy.png');
-}
-
-.taken.carrier.horizontal {
-  background-image: url('/images/five-train.png');
-}
-.taken.battleship.vertical {
-  background-image: url('/images/four-train copy.png');
 }
 
 .taken.battleship.horizontal {
@@ -179,7 +169,48 @@ body {
 
 .taken.carrier {
   background-image: url('/images/five-train.png');
-} 
+}
+.taken.destroyer {
+  background-image: url('/images/two-train.png');
+}
+
+.taken.submarine {
+  background-image: url('/images/three-1-train.png');
+}
+
+
+.taken.cruiser {
+  background-image: url('/images/three-2-train.png');
+}
+
+.taken.battleship {
+  background-image: url('/images/four-train.png');
+}
+
+.taken.carrier {
+  background-image: url('/images/five-train.png');
+}
+
+.taken.destroyer.vertical {
+  background-image: url('/images/two-train copy.png');
+}
+
+.taken.submarine.vertical {
+  background-image: url('/images/three-1-train copy.png');
+}
+
+.taken.cruiser.vertical {
+  background-image: url('/images/three-2-train copy.png');
+}
+
+.taken.carrier.vertical {
+  background-image: url('/images/five-train copy.png');
+}
+
+.taken.battleship.vertical {
+  background-image: url('/images/four-train copy.png');
+}
+
 .ship {
   position: relative;
   background-size: cover;
